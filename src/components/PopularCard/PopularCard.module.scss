@@ -1,0 +1,80 @@
+@import '../../app/styles/_variables';
+
+.Card {
+    width: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px $borderColor, 0 10px 15px -3px rgba(0, 0, 0, .05), 0 4px 6px -4px rgba(0, 0, 0, .05);
+    cursor: pointer;
+    // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.Card:hover .MaskCard img {
+    transform: scale(1.05);
+}
+
+.MaskCard {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.MaskCard img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+    z-index: 0;
+}
+
+.Rating {
+    background-color: #212121b3;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 4px 8px;
+
+    p {
+        font-size: 14px;
+        color: white;
+        line-height: 20px;
+    }
+}
+
+.Content {
+    padding: 0.5rem 1rem;
+    z-index: 1;
+    background: white;
+
+    h3 {
+        font-size: clamp(1.125rem, 0.8459rem + 0.6977vw, 1.5rem);
+        margin-bottom: 0.25rem;
+        white-space: nowrap; // Evita que el texto se divida en varias líneas
+        overflow: hidden; // Oculta el contenido que exceda el ancho
+        text-overflow: ellipsis;
+    }
+
+    p {
+        color: $secondaryText;
+    }
+
+    p,
+    span {
+        font-size: 14px;
+    }
+
+    span {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+}

@@ -1,0 +1,13 @@
+.Section {
+  background-color: #212121;
+  height: 100vh;
+}
+
+.Portada {
+  -o-object-position: top;
+     object-position: top;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: clamp(300px, 40vw, 800px);
+}/*# sourceMappingURL=HeroHomePage.module.css.map */
