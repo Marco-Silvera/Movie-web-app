@@ -1,0 +1,51 @@
+@import '../../styles/_variables.scss';
+
+.HeroContainer {
+    position: relative;
+    overflow: hidden;
+}
+
+.BackgroundImage {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.Overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, black 0%, rgba(0, 0, 0, 0.8), transparent 80%);
+    z-index: 10;
+}
+
+.Content {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: end;
+    padding: 0px 16px;
+    padding-bottom: clamp(1.25rem, -0.7965rem + 5.5vw, 4rem);
+
+    h2,
+    p {
+        color: white;
+    }
+
+    h2 {
+        font-size: clamp(1.875rem, 1.2766rem + 1.9149vw, 3rem);
+    }
+
+    p {
+        font-size: clamp(0.875rem, 0.742rem + 0.4255vw, 1.125rem);
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4; // <-- máximo 4 líneas
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
