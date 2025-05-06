@@ -1,0 +1,16 @@
+@import '../styles/_variables.scss';
+
+.SectionProximosEstrenos {
+    padding-top: clamp(5.3125rem, 3.1641rem + 4.2969vw, 7.03125rem);
+}
+
+.MainContainer {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+
+    @media(max-width:768px) {
+        flex-direction: column;
+    }
+}
