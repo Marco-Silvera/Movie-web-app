@@ -55,7 +55,8 @@
     background: white;
 
     h3 {
-        font-size: clamp(1.125rem, 0.8459rem + 0.6977vw, 1.5rem);
+        // font-size: clamp(1.125rem, 0.8459rem + 0.6977vw, 1.5rem);
+        font-size: clamp(1rem, 0.8rem + 0.5vw, 1.25rem);
         margin-bottom: 0.25rem;
         white-space: nowrap; // Evita que el texto se divida en varias líneas
         overflow: hidden; // Oculta el contenido que exceda el ancho
