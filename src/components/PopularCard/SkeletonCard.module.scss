@@ -1,0 +1,59 @@
+@import '../../app/styles/_variables.scss';
+
+.SkeletonCard {
+    width: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px $borderColor, 0 10px 15px -3px rgba(0, 0, 0, .05), 0 4px 6px -4px rgba(0, 0, 0, .05);
+    animation: pulse 1.5s infinite;
+    background-color: #f0f0f0;
+}
+
+.Image {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    background-color: #ddd;
+}
+
+.Content {
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: white;
+}
+
+.Title,
+.Year,
+.Details {
+    height: 14px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+}
+
+.Title {
+    width: 70%;
+    height: 20px;
+}
+
+.Year {
+    width: 40%;
+}
+
+.Details {
+    width: 60%;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
