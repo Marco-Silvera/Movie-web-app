@@ -1,11 +1,18 @@
 import styles from "./PopularCard.module.scss";
 
-function PopularCard({ link, image, rating, title, year }) {
+function PopularCard({ movie }) {
+    const { id, poster_path, title, vote_average, release_date } = movie;
+
+    const image = `https://image.tmdb.org/t/p/w500${poster_path}`;
+    const rating = Math.floor(vote_average * 10) / 10;
+    const date = release_date?.split("-").reverse().join("-");
+    const link = `/peliculas/${id}`;
+
     return (
         <article className={styles.Card}>
             <a href={link}>
                 <div className={styles.MaskCard}>
-                    <img src={image} alt={title} />
+                    <img src={image} alt={`Caratula de ${title}`} />
                     <div className={styles.Rating}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +28,7 @@ function PopularCard({ link, image, rating, title, year }) {
                     </div>
                     <div className={styles.Content}>
                         <h3>{title}</h3>
-                        <p>{year}</p>
+                        <p>{date}</p>
                         <span>
                             Detalles
                             <svg

@@ -1,37 +1,16 @@
-"use client";
-import { useState, useEffect } from "react";
 import PopularCard from "../PopularCard";
 import SkeletonCard from "../PopularCard/SkeletonCard";
 import styles from "./PopularSection.module.scss";
-import { getPopularMovies } from "@/lib/tmdb";
 
-function PopularSection() {
-    const [movies, setMovies] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    const skeletonArray = Array.from({ length: 8 });
-
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const data = await getPopularMovies();
-                setMovies(data.results);
-            } catch (err) {
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        fetchData();
-    }, []);
+function PopularSection({ movies }) {
+    if (!movies || movies.length === 0) return null;
 
     return (
         <section className={styles.Section}>
             <div className={styles.Container}>
                 <header className={styles.Header}>
                     <h2>Películas Populares</h2>
-                    <a href="/peliculas/dune-2">
+                    <a href="/explorar">
                         Ver todas
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -50,22 +29,9 @@ function PopularSection() {
                     </a>
                 </header>
                 <section className={styles.CardContainer}>
-                    {loading
-                        ? skeletonArray.map((_, index) => (
-                              <SkeletonCard key={index} />
-                          ))
-                        : movies.map((movie) => (
-                              <PopularCard
-                                  key={movie.id}
-                                  link={`/peliculas/${movie.id}`}
-                                  image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                                  rating={
-                                      Math.floor(movie.vote_average * 10) / 10
-                                  }
-                                  title={movie.title}
-                                  year={movie.release_date?.split("-")[0]}
-                              />
-                          ))}
+                    {movies.map((movie) => (
+                        <PopularCard key={movie.id} movie={movie} />
+                    ))}
                 </section>
             </div>
         </section>

@@ -1,7 +1,22 @@
 import styles from "./HeroHomePage.module.scss";
 import Link from "next/link";
 
-export default function HeroHomePage() {
+export default function HeroHomePage({ movie }) {
+    if (!movie) return null;
+    const {
+        id,
+        title,
+        release_date,
+        vote_average,
+        overview,
+        poster_path,
+        genre_names,
+    } = movie;
+
+    const date = release_date?.split("-").reverse().join("-");
+    const rating = Math.floor(vote_average * 10) / 10;
+    const genres = genre_names?.splice(0, 3).join(", ");
+
     return (
         <section className={styles.Section}>
             <div className={styles.Container}>
@@ -11,8 +26,8 @@ export default function HeroHomePage() {
 
                     {/* Imagen de fondo */}
                     <img
-                        src="https://a.ltrbxd.com/resized/sm/upload/qp/uv/i4/8b/l6b9YZEokZl1nt7q0pprrur6btG-1200-1200-675-675-crop-000000.jpg?v=ed21d71137"
-                        alt="Película destacada"
+                        src={`https://image.tmdb.org/t/p/original${poster_path}`}
+                        alt={`Caratula de ${title}`}
                         className={styles.BackgroundImage}
                     />
 
@@ -23,7 +38,7 @@ export default function HeroHomePage() {
                                 <span className={styles.Pulse} />
                                 Nuevo Estreno
                             </div>
-                            <h1 className={styles.Title}>Dune: Parte Dos</h1>
+                            <h1 className={styles.Title}>{title}</h1>
                             <div className={styles.MovieInfo}>
                                 <div className={styles.Generopc}>
                                     <div className={styles.Rating}>
@@ -38,38 +53,33 @@ export default function HeroHomePage() {
                                         >
                                             <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                         </svg>
-                                        <span>8.7/10</span>
+                                        <span>
+                                            {rating}
+                                        </span>
                                     </div>
                                     <span className={styles.Separator}>|</span>
-                                    <span className={styles.Text}>2024</span>
-                                    <span className={styles.Separator}>|</span>
-                                    <span className={styles.Text}>166 min</span>
+                                    <span className={styles.Text}>{date}</span>
                                     <span className={styles.Separator}>|</span>
                                     <span className={styles.Text}>
-                                        Ciencia Ficción, Aventura
+                                        {genres}
                                     </span>
                                 </div>
                                 <div className={styles.Generomobile}>
                                     <span className={styles.Text}>
-                                        Ciencia Ficción, Aventura
+                                        {genres}
                                     </span>
                                 </div>
                             </div>
-                            <p className={styles.Description}>
-                                Paul Atreides se une a los Fremen y comienza un
-                                viaje espiritual y político para convertirse en
-                                Muad'Dib, mientras busca venganza contra los
-                                conspiradores que destruyeron a su familia.
-                            </p>
+                            <p className={styles.Description}>{overview}</p>
                             <div className={styles.Buttons}>
                                 <Link
-                                    href="/pelicula/dune-2"
+                                    href={`/peliculas/${id}`}
                                     className={styles.PrimaryButton}
                                 >
                                     Ver Detalles
                                 </Link>
                                 <Link
-                                    href="/trailer/dune-2"
+                                    href={`/trailers/${id}`}
                                     className={styles.SecondaryButton}
                                 >
                                     Ver Trailer

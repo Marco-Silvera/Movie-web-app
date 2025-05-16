@@ -1,10 +1,25 @@
 import styles from "./TopRatedCard.module.scss";
 
-function TopRatedCard({ link, image, rating, title, year, genre, synopsis }) {
+function TopRatedCard({ movie }) {
+    const {
+        id,
+        poster_path,
+        title,
+        vote_average,
+        release_date,
+        overview,
+        genre_names,
+    } = movie;
+
+    const image = `https://image.tmdb.org/t/p/w500${poster_path}`;
+    const rating = Math.floor(vote_average * 10) / 10;
+    const year = release_date?.split("-")[0];
+    const link = `/peliculas/${id}`;
+
     return (
         <article className={styles.Card}>
             <div className={styles.MaskCard}>
-                <img src={image} alt={title} />
+                <img src={image} alt={`Caratula de ${title}`} />
             </div>
             <div className={styles.Content}>
                 <div className={styles.Rating}>
@@ -23,10 +38,10 @@ function TopRatedCard({ link, image, rating, title, year, genre, synopsis }) {
                 <h3>{title}</h3>
                 <div className={styles.Info}>
                     <p>
-                        {year} • {genre}
+                        {year} • {genre_names.slice(0, 3).join(" - ")}
                     </p>
                 </div>
-                <p className={styles.Synopsis}>{synopsis}</p>
+                <p className={styles.Synopsis}>{overview}</p>
                 <span>
                     Detalles
                     <svg
