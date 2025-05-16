@@ -1,6 +1,14 @@
 import styles from "./GenreSection.module.scss";
 
-function GenreSection() {
+function GenreSection({ movies }) {
+    if (!movies || movies.length === 0) return null;
+
+    // Extracción de todos los nombres de géneros
+    const allGenreNames = movies.flatMap((movie) => movie.genre_names);
+
+    // Filtrar géneros únicos
+    const uniqueGenres = Array.from(new Set(allGenreNames));
+
     return (
         <section className={styles.Section}>
             <div className={styles.Container}>
@@ -8,18 +16,13 @@ function GenreSection() {
                     <h2>Explorar por Género</h2>
                 </header>
                 <section className={styles.CardContainer}>
-                    <article className={styles.Card}>Acción</article>
-                    <article className={styles.Card}>Aventura</article>
-                    <article className={styles.Card}>Animación</article>
-                    <article className={styles.Card}>Comedia</article>
-                    <article className={styles.Card}>Crimen</article>
-                    <article className={styles.Card}>Drama</article>
-                    <article className={styles.Card}>Fantasía</article>
-                    <article className={styles.Card}>Terror</article>
-                    <article className={styles.Card}>Romance</article>
-                    <article className={styles.Card}>Ciencia Ficción</article>
-                    <article className={styles.Card}>Thriller</article>
-                    <article className={styles.Card}>Bélica</article>
+                    {uniqueGenres.map((genre) => (
+                        <a href={`/${genre}`}>
+                            <article key={genre} className={styles.Card}>
+                                {genre}
+                            </article>
+                        </a>
+                    ))}
                 </section>
             </div>
         </section>
