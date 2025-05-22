@@ -17,7 +17,7 @@ function GenreSection({ movies }) {
                 </header>
                 <section className={styles.CardContainer}>
                     {uniqueGenres.map((genre) => (
-                        <a href={`/${genre}`}>
+                        <a key={genre} href={`/${genre}`}>
                             <article key={genre} className={styles.Card}>
                                 {genre}
                             </article>

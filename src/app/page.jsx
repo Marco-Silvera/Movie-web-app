@@ -19,7 +19,7 @@ export default async function Home() {
             <PopularSection movies={popularMovies} />
             <TopRatedSection movies={topRatedMovies.slice(0, 3)} />
             <UpcomingRealeasesSection movies={upComingMovies.slice(0, 4)} />
-            <GenreSection movies={popularMovies.slice(0, 12)} />
+            <GenreSection movies={popularMovies.slice(0, 11)} />
             <Contact />
         </>
     );
